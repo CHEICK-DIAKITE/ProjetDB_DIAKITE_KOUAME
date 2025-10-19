@@ -1,0 +1,42 @@
+Donne les requêtes d’insertion permettant de remplir la base de données dont le modèle relationnel est le suivant :
+UTILISATEUR = (id_utilisateur BYTE, email_utilisateur VARCHAR(50), mot_de_passe VARCHAR(50), date_inscription DATE);
+PROFIL = (#id_utilisateur, id_profil BYTE, nom_profil VARCHAR(50), restriction_age_profil VARCHAR(50));
+ABONNEMENT = (id_abonnement BYTE, type_abonnement VARCHAR(50), montant_mensuel BYTE);
+ACTEUR = (id_acteur BYTE, nom_acteur VARCHAR(50));
+RERALISATEUR = (id_realisateur BYTE, nom_realisateur BYTE);
+CONTENU = (id_contenu BYTE, titre_contenu VARCHAR(50), genre_principal VARCHAR(50), pays_origine VARCHAR(50), duree_minutes INT, classification_age VARCHAR(50), type_contenu VARCHAR(50), resume_contenu VARCHAR(50), date_mise_en_ligne DATE, #id_realisateur, #(#id_utilisateur, id_profil)*);
+VISIONNER = (#id_contenu, #(#id_utilisateur, id_profil), pourcentage_progression DOUBLE);
+JOUER_DANS = (#id_contenu, #id_acteur, role_principal VARCHAR(50));
+SOUSCRIRE = (#id_utilisateur, date_debut DATE, date_fin DATE, statut VARCHAR(50), #id_abonnement);
+FAVORIS = (#id_contenu, #(#id_utilisateur, id_profil));
+Les clés primaires correspondent aux id, sauf si autre chose est précisé (quand c'est un attribut composé) les clés étrangères sont identifiées par les #, et ont le même nom que les clés primaires auxquelles elles font référence.
+Il doit y avoir : 200 contenus (films et séries variés : action, drame, comédie, sci-fi, etc.) - 300 utilisateurs, 1000 profils (répartis entre les utilisateurs), 3 types d'abonnements (Basique, Standard, Premium), 1500 acteurs,  150 réalisateurs. Chaque contenu a exactement 1 réalisateur et au moins 10 acteurs, chaque utilisateur a 1 abonnement actif et entre 1 et 5 profils, les visionnages respectent les restrictions d'âge, diversité dans les notes (1 à 5 étoiles), historique de visionnage varié avec progressions réalistes.
+Il faut que ça soit vraiment réaliste, pas un truc inventé de toute pièce, il faut aussi que toutes les données soient liées entre elles pour ne créer de confusions inspire toi des grandes entreprises du monde audiovisuel comme Netflix, prime vidéo, etc. Les clés étrangères doivent faire référence aux clés primaires existantes : donne les lignes en commençant par remplir les tables dans lesquelles il n'y a pas de clés étrangères, puis les tables dans lesquelles les clés étrangères font références à des clés primaires des tables déjà remplies. Les données doivent respecter les contraintes de validation suivantes : CONTENU :
+date_sortie : entre 01/01/2000 et date du jour
+classification_age : valeurs {TP, 13+, 16+, 18+} uniquement
+UTILISATEUR :
+email_utilisateur : format email valide (xxx@xxx.xxx)
+mot_de_passe : minimum 8 caractères alphanumérique
+PROFIL :
+restriction_age_profil : valeurs {TP, 13+, 16+, 18+} uniquement
+Un utilisateur doit avoir entre 1 et 5 profils (vérifier cardinalité)
+ABONNEMENT :
+               montant_mensuel : Basique=9.99, Standard=14.99, Premium=19.99 (valeurs fixes)
+ASSOCIATION SOUSCRIRE :
+date_debut < date_fin
+date_debut >= date_inscription de l'utilisateur
+ASSOCIATION VISIONNER :
+date_visionnage >= date_inscription du profil
+date_visionnage >= date_mise_en_ligne du contenu
+pourcentage_progression : entre 0 et 100%
+Respecter restriction_age_profil <= classification_age du contenu
+ASSOCIATION NOTER :
+date_notation >= date_visionnage (on ne peut noter qu'après avoir visionné)
+Un profil ne peut noter qu'une seule fois le même contenu
+ASSOCIATION JOUER_DANS :
+role_principal : valeurs {O, N} uniquement (booléen)
+ Un seul acteur par contenu peut avoir role_principal='O'
+ 
+ 
+ASSOCIATION FAVORIS :
+ date_ajout_favoris >= date_inscription du profil Assure-toi que les noms et prénoms des étudiants font références à des origines variées et sont mixtes. Fournis l'ensemble sous la forme d’un script SQL prêt à être exécuté.
