@@ -5,33 +5,37 @@
 
 
 -- Requête 1 : Lister tous les contenus de science-fiction pour adultes (16+)
--- Objectif : Obtenir une liste de contenus comparables à "Chronique d'Andromède".
+-- Objectif : Obtenir une liste de contenus comparables à "Chronique d'Andromède".*
+USE Primefix_bd;
+
+select * from ACTEUR;        
+
 SELECT 
     titre_contenu, 
     pays_origine, 
     date_mise_en_ligne
-FROM CONTENU
+FROM contenu
 WHERE 
-    genre_principal = 'Sci-Fi' 
+    genre_principal = 'Science-Fiction' 
     AND classification_age IN ('16+', '18+')
 ORDER BY 
     date_mise_en_ligne DESC;
 
--- Requête 2 : Extraire le titre et le résumé de la série "Chronique d'Andromède"
+-- Requête 2 : Extraire le titre et le résumé de la série "Space Odyssey"
 -- Objectif : Confirmer les informations de base sur le contenu analysé.
 SELECT 
     titre_contenu, 
     resume_contenu
-FROM CONTENU
+FROM contenu
 WHERE 
-    titre_contenu LIKE 'Chronique d''Andromède%'; -
+    titre_contenu LIKE "Space Odyssey%";
 
 -- Requête 3 : Lister les utilisateurs qui se sont inscrits en 2023
 -- Objectif : Analyser le comportement d'une cohorte récente d'utilisateurs.
 SELECT 
     email_utilisateur, 
     date_inscription
-FROM UTILISATEUR
+FROM utilisateur
 WHERE 
     date_inscription BETWEEN '2023-01-01' AND '2023-12-31'
 ORDER BY 
@@ -41,7 +45,7 @@ ORDER BY
 -- Objectif : Avoir une vue d'ensemble de la diversité géographique du catalogue.
 SELECT DISTINCT 
     pays_origine
-FROM CONTENU
+FROM contenu
 ORDER BY 
     pays_origine;
 
@@ -50,7 +54,7 @@ ORDER BY
 SELECT 
     id_acteur, 
     nom_acteur
-FROM ACTEUR
+FROM acteur
 WHERE 
     nom_acteur LIKE '% Smith';
 
@@ -65,13 +69,13 @@ WHERE
 SELECT 
     genre_principal, 
     COUNT(id_contenu) AS nombre_de_contenus
-FROM CONTENU
+FROM contenu 
 GROUP BY 
     genre_principal
 ORDER BY 
     nombre_de_contenus DESC;
 
--- Requête 7 : Calculer la progression de visionnage moyenne pour "Chronique d'Andromède"
+-- Requête 7 : Calculer la progression de visionnage moyenne pour "Space Odyssey"
 -- Objectif : Évaluer si les spectateurs regardent la série jusqu'à la fin.
 SELECT 
     C.titre_contenu,
@@ -79,7 +83,7 @@ SELECT
 FROM VISIONNER V
 JOIN CONTENU C ON V.id_contenu = C.id_contenu
 WHERE 
-    C.titre_contenu = 'Chronique d''Andromède'
+    C.titre_contenu = 'Space Odyssey'
 GROUP BY 
     C.titre_contenu;
 
@@ -124,7 +128,7 @@ ORDER BY
 -- (Utilisation de INNER JOIN, LEFT JOIN, multiples jointures)
 
 
--- Requête 11 (Multiple INNER JOIN) : Lister les abonnés Premium qui ont visionné "Chronique d'Andromède"
+-- Requête 11 (Multiple INNER JOIN) : Lister les abonnés Premium qui ont visionné "Space Odyssey"
 -- Objectif : Vérifier si la série est populaire auprès du segment d'abonnés le plus rentable.
 SELECT 
     U.email_utilisateur,
@@ -137,7 +141,7 @@ JOIN CONTENU C ON V.id_contenu = C.id_contenu
 JOIN SOUSCRIRE S ON U.id_utilisateur = S.id_utilisateur
 JOIN ABONNEMENT A ON S.id_abonnement = A.id_abonnement
 WHERE 
-    C.titre_contenu = 'Chronique d''Andromède'
+    C.titre_contenu = 'Space Odyssey'
     AND A.type_abonnement = 'Premium'
     AND S.statut = 'actif';
 
@@ -190,7 +194,7 @@ WHERE
 -- (Utilisation de (NOT) IN, (NOT) EXISTS, ANY, ALL)
 
 
--- Requête 16 (Subquery avec IN) : Trouver tous les contenus joués par l'acteur principal de "Chronique d'Andromède"
+-- Requête 16 (Subquery avec IN) : Trouver tous les contenus joués par l'acteur principal de "Space Odyssey"
 -- Objectif : Mesurer l'attrait global de l'acteur principal en dehors de la série phare.
 SELECT 
     titre_contenu, 
@@ -203,9 +207,9 @@ WHERE id_contenu IN (
         SELECT id_acteur 
         FROM JOUER_DANS 
         WHERE role_principal = 'O' 
-        AND id_contenu = (SELECT id_contenu FROM CONTENU WHERE titre_contenu = 'Chronique d''Andromède')
+        AND id_contenu = (SELECT id_contenu FROM CONTENU WHERE titre_contenu = 'Space Odyssey')
     )
-);
+);  
 
 -- Requête 17 (Subquery avec NOT EXISTS) : Trouver les utilisateurs qui n'ont jamais rien mis en favoris
 -- Objectif : Identifier les utilisateurs peu engagés avec les fonctionnalités de la plateforme.
