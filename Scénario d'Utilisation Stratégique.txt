@@ -4,9 +4,9 @@ Nom : Alexandre Moreau
 Poste : Analyste Stratégique, Département Acquisition de Contenus.
 Mission : Évaluer la performance du catalogue pour optimiser le budget d'acquisition et de renouvellement des licences de diffusion.
 Contexte et Objectif :
-La plateforme de streaming a investi massivement dans les droits de diffusion d'une série de science-fiction exclusive et acclamée par la critique, "Chronique d'Andromède". La licence, très coûteuse, arrive à expiration dans 6 mois. La direction hésite : faut-il la renouveler pour plusieurs millions d'euros, ou cet argent serait-il mieux investi dans de nouveaux contenus ?
+La plateforme de streaming a investi massivement dans les droits de diffusion d'une série de science-fiction exclusive et acclamée par la critique, "Space Odissey". La licence, très coûteuse, arrive à expiration dans 6 mois. La direction hésite : faut-il la renouveler pour plusieurs millions d'euros, ou cet argent serait-il mieux investi dans de nouveaux contenus ?
 Le simple nombre de "vues" n'est pas suffisant pour prendre cette décision. Alexandre a pour mission de réaliser une analyse approfondie pour déterminer la valeur réelle de cette série pour la plateforme. Son objectif est de répondre à ces questions clés :
-Quel est le profil d'engagement des spectateurs de "Chronique d'Andromède" ? (Regardent-ils la série en entier ?)
+Quel est le profil d'engagement des spectateurs de "Space Odissey" ? (Regardent-ils la série en entier ?)
 La série attire-t-elle et retient-elle nos abonnés les plus précieux (ceux avec des abonnements Premium) ?
 Les spectateurs de la série sont-ils des fans de science-fiction ou un public plus large ?
 L'acteur principal de la série a-t-il un "pouvoir d'attraction" qui pourrait être exploité dans d'autres contenus ?
@@ -14,11 +14,12 @@ Liste des données qui doivent être extraites :
 Pour son analyse, Alexandre a besoin des informations suivantes :
 La liste de tous les contenus de science-fiction disponibles, pour comparer la performance.
 Le nombre total de contenus par genre pour comprendre la répartition du catalogue.
-La progression moyenne de visionnage pour "Chronique d'Andromède" afin d'évaluer le taux de rétention des spectateurs au fil des épisodes.
+La progression moyenne de visionnage pour "Space Odissey" afin d'évaluer le taux de rétention des spectateurs au fil des épisodes.
 Le nombre d'utilisateurs actifs répartis par type d'abonnement pour comprendre la base client.
 La liste des utilisateurs ayant un abonnement Premium actif qui ont regardé la série.
 La liste de tous les réalisateurs et des contenus qu'ils ont réalisés.
 Une liste de tous les acteurs, y compris ceux qui ne sont actuellement associés à aucun contenu (pour la gestion des talents).
-La liste des autres films et séries dans lesquels l'acteur principal de "Chronique d'Andromède" a joué.
+La liste des autres films et séries dans lesquels l'acteur principal de "Space Odissey" a joué.
 Les utilisateurs qui n'ont créé aucun profil "adulte" (18+), pour des analyses de segmentation.
+
 Les contenus exceptionnellement longs, plus longs que n'importe quelle comédie, pour identifier des formats atypiques.
