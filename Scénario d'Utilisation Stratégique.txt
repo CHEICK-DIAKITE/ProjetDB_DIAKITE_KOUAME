@@ -1,5 +1,5 @@
 Scénario d'Utilisation Stratégique
-Rôle de l'utilisateur :
+Rôle de l'utilisateur : 
 Nom : Alexandre Moreau
 Poste : Analyste Stratégique, Département Acquisition de Contenus.
 Mission : Évaluer la performance du catalogue pour optimiser le budget d'acquisition et de renouvellement des licences de diffusion.
@@ -23,3 +23,4 @@ La liste des autres films et séries dans lesquels l'acteur principal de "Space 
 Les utilisateurs qui n'ont créé aucun profil "adulte" (18+), pour des analyses de segmentation.
 
 Les contenus exceptionnellement longs, plus longs que n'importe quelle comédie, pour identifier des formats atypiques.
+
